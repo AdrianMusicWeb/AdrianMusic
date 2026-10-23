@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrian Music | Sitio Oficial</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Outfit & Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#070709',
+                            card: '#121218',
+                            purple: '#a855f7',
+                            cyan: '#06b6d4',
+                            pink: '#ec4899',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-purple': '0 0 25px -5px rgba(168, 85, 247, 0.4)',
+                        'neon-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.4)',
+                        'neon-pink': '0 0 25px -5px rgba(236, 72, 153, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS para animaciones y efectos -->
+    <style>
+        body {
+            background-color: #070709;
+            color: #f3f4f6;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: #121218;
+            border-radius: 1.25rem;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.3rem;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.18) 0%, rgba(6, 182, 212, 0.12) 35%, rgba(7, 7, 9, 0) 70%);
+        }
+
+        /* Esferas de luz ambiental */
+        .glow-sphere-1 {
+            position: absolute;
+            top: 5%;
+            left: -10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(70px);
+            pointer-events: none;
+        }
+
+        .glow-sphere-2 {
+            position: absolute;
+            top: 55%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(70px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-purple selection:text-white relative overflow-x-hidden">
+
+    <!-- Ambient Glow Spheres -->
+    <div class="glow-sphere-1"></div>
+    <div class="glow-sphere-2"></div>
+
+    <!-- NAVBAR FIJO -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo / Nombre -->
+            <a href="#inicio" class="text-2xl font-black font-heading tracking-wider gradient-text hover:opacity-90 transition-opacity">
+                ADRIAN MUSIC
+            </a>
+            
+            <!-- Enlaces Desktop -->
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm text-gray-300">
+                <a href="#inicio" class="hover:text-brand-cyan transition-colors">Inicio</a>
+                <a href="#biografia" class="hover:text-brand-cyan transition-colors">Biografía</a>
+                <a href="#redes" class="hover:text-brand-purple transition-colors">Redes Sociales</a>
+                <a href="#videos" class="hover:text-brand-pink transition-colors">Videos</a>
+                <a href="#contacto" class="hover:text-brand-cyan transition-colors">Contacto</a>
+            </div>
+
+            <!-- Botón de acción móvil/desktop -->
+            <a href="#contacto" class="hidden sm:inline-block px-5 py-2 text-xs font-semibold uppercase tracking-wider rounded-full bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink text-white hover:shadow-neon-purple transition-all duration-300 transform hover:-translate-y-0.5">
+                Contrataciones
+            </a>
+
+            <!-- Botón Menú Móvil -->
+            <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-gray-300 hover:text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-white/10 px-6 py-6 flex-col space-y-4 text-center font-medium text-gray-300">
+            <a href="#inicio" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Inicio</a>
+            <a href="#biografia" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Biografía</a>
+            <a href="#redes" onclick="toggleMenu()" class="hover:text-brand-purple py-1 border-b border-white/5">Redes Sociales</a>
+            <a href="#videos" onclick="toggleMenu()" class="hover:text-brand-pink py-1 border-b border-white/5">Videos</a>
+            <a href="#contacto" onclick="toggleMenu()" class="hover:text-brand-cyan py-1">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- 1. SECCIÓN INICIO (HERO SECTION) -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 hero-bg">
+        <div class="max-w-4xl mx-auto text-center z-10">
+            <!-- Badge / Tag -->
+            <span class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-brand-cyan uppercase bg-brand-cyan/10 border border-brand-cyan/30 rounded-full">
+                Artista & Productor Urbano / Latino
+            </span>
+
+            <!-- Título Principal -->
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-heading tracking-tight mb-6 uppercase leading-tight">
+                ADRIAN <span class="gradient-text">MUSIC</span>
+            </h1>
+
+            
+            <!-- Botones de llamado a la acción -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <a href="#redes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-cyan to-brand-purple font-bold text-white shadow-lg hover:shadow-neon-purple transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-headphones text-lg"></i>
+                    Escuchar Ahora
+                </a>
+                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 font-bold text-white border border-white/20 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-3 hover:border-brand-pink">
+                    <i class="fa-solid fa-envelope text-sm"></i>
+                    Contacto & Booking
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SECCIÓN BIOGRAFÍA -->
+    <section id="biografia" class="py-24 px-6 max-w-5xl mx-auto relative z-10 scroll-mt-20">
+        <div class="gradient-border p-8 md:p-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                
+                <!-- Avatar / Foto del Artista -->
+                <div class="md:col-span-5 relative group">
+                    <div class="relative w-full  rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                        <img src="foto Adrian/Que Tú Que Yo Adrian.png" 
+                             alt="Adrian Music" 
+                             class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-brand-purple/40 rounded-2xl -z-10"></div>
+                </div>
+
+                <!-- Trayectoria e Historia -->
+                <div class="md:col-span-7">
+                    <span class="text-xs font-semibold text-brand-purple uppercase tracking-widest block mb-1">Trayectoria & Estilo</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-4">
+                        Sobre <span class="gradient-text">Adrian Music</span>
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed mb-4 text-base">
+                        Cantautor y productor musical formado en percusión latina y composición. Tras consolidar su carrera solista (“Escúchame”, “¿Qué Nos Pasó?”) y trabajar en producción junto a Baudhy La Bestia Armoniosa y la agrupación Esto Es Clandestino, actualmente se encuentra trabajando de la mano del reconocido productor Jenderson Vera, mejor conocido como "Dimelojen", en sus próximos lanzamientos.
+                        
+                    </p>
+
+
+<button id="read-more-btn" class="border border-brand-purple rounded-full px-6 py-2 text-brand-purple" onclick="toggleBiography()">Seguir leyendo</button>
+
+<div id="full-bio" style="display: none;">
+<p>Nació el 12 de octubre de 1990 y desde muy pequeño mostró una profunda pasión por la música y la escritura. Sus primeros pasos en la composición comenzaron expresando sentimientos a través de poesías y versos con ritmo y coherencia, los cuales con el tiempo transformó en canciones.
+
+Tras formarse en percusión latina, comenzó a crear las instrumentales de sus propios temas. Durante su etapa universitaria formó parte de la agrupación Grupo Alternativa, abriéndose paso en la escena musical.
+
+En 2014 formalizó su debut como solista con el tema “Enamorado de ti”. Más adelante consolidó su propuesta musical con los lanzamientos de “Escúchame” (2016) y “¿Qué Nos Pasó?” (2018), sencillos con los que logró darse a conocer en medios de comunicación y presentaciones en vivo.
+
+A la par de su faceta como intérprete, ha mantenido una sólida labor como productor y compositor, creando letras y beats tanto para él como para otros artistas. Participó en la producción de los temas “Aguardiente” y “En la Orilla de la Playa” junto al reconocido productor Baudhy La Bestia Armoniosa, y ha ejercido como productor musical de la agrupación “Esto Es Clandestino”.
+
+En la actualidad, Adrián continúa evolucionando en su propuesta sonora y se encuentra trabajando en conjunto con el reconocido productor Jenderson Vera, mejor conocido como "Dimelojen", en la producción de sus nuevos temas.</p>
+</div>
+
+<script>
+function toggleBiography() {
+var fullBio = document.getElementById("full-bio");
+var btn = document.getElementById("read-more-btn");
+if (fullBio.style.display === "none") {
+fullBio.style.display = "block";
+btn.innerHTML = "Leer menos";
+} else {
+fullBio.style.display = "none";
+btn.innerHTML = "Seguir leyendo";
+}
+}
+</script>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SECCIÓN REDES SOCIALES -->
+    <section id="redes" class="py-24 px-6 max-w-4xl mx-auto relative z-10 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-semibold text-brand-cyan uppercase tracking-widest block mb-1">Plataformas Oficiales</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3">
+                Conéctate con <span class="gradient-text">Adrian Music</span>
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base">Sígueme y escucha mi música en todas las plataformas digitales.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Spotify -->
+            <a href="https://open.spotify.com/intl-es/artist/3ggm2ZRw3o3G4PLgajdxGz?si=F_g-62M1TbKAF8XECMcyxQ" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-green-500/50">
+                <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all text-2xl mr-4">
+                    <i class="fa-brands fa-spotify"></i>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="font-bold text-white group-hover:text-green-400 transition-colors">Spotify</h3>
+                    <p class="text-xs text-gray-400">Escucha la discografía completa</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@OfficialAdrianMusic" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-red-500/50">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all text-2xl mr-4">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="font-bold text-white group-hover:text-red-400 transition-colors">YouTube</h3>
+                    <p class="text-xs text-gray-400">Videoclips & En Vivo</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/adrianmusic/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-pink-500/50">
+                <div class="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-500 group-hover:bg-gradient-to-tr group-hover:from-amber-500 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-white transition-all text-2xl mr-4">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="font-bold text-white group-hover:text-pink-400 transition-colors">Instagram</h3>
+                    <p class="text-xs text-gray-400">Historias & Día a Día</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@adrianmusiic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-cyan-500/50">
+                <div class="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all text-2xl mr-4">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="font-bold text-white group-hover:text-cyan-400 transition-colors">TikTok</h3>
+                    <p class="text-xs text-gray-400">Avances & Challenges</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+            </a>
+
+            <!-- Fans Page -->
+            <a href="https://www.facebook.com/OfficialAdrianMusic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-blue-500/50">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-white-500 group-hover:bg-blue-500 group-hover:text-white transition-all text-2xl mr-4">
+                    <i class="fa-brands fa-facebook text-white"></i>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="font-bold text-white group-hover:text-blue-400 transition-colors">Facebook</h3>
+                    <p class="text-xs text-gray-400">Avances & Conexión</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+            </a>
+
+        </div>
+        
+    </section>
+
+    <!-- 4. SECCIÓN VIDEOS -->
+    <section id="videos" class="py-24 px-6 max-w-6xl mx-auto relative z-10 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-semibold text-brand-pink uppercase tracking-widest block mb-1">Galería Audiovisual</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3">
+                Últimos <span class="gradient-text">Videoclips</span>
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base">Mira las producciones visuales y actuaciones en vivo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mx-auto max-w-2xl">
+            
+            <!-- Video 1 - Reproductor Embebido -->
+            <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/10 hover:border-brand-purple/50 transition-all duration-300 group">
+                <div class="relative aspect-video w-full">
+                    <iframe class="w-full h-full" 
+                            src="https://www.youtube.com/embed/TNqpaLmWDr4" 
+                            title="Que Tú Que Yo-Adrian (Official Video)" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-brand-purple uppercase tracking-wider">Último Sencillo</span>
+                    <h3 class="text-xl font-bold text-white mt-1 group-hover:text-brand-cyan transition-colors">Que Tú Que Yo (Official Video)</h3>
+                    <p class="text-gray-400 text-sm mt-2">Sencillo principal con producción cinematográfica grabada en la ciudad.</p>
+                </div>
+            </div>
+
+            
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. SECCIÓN CONTACTO -->
+    <section id="contacto" class="py-24 px-6 max-w-5xl mx-auto relative z-10 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-semibold text-brand-purple uppercase tracking-widest block mb-1">Booking & Management</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3">
+                Ponte en <span class="gradient-text">Contacto</span>
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base">¿Interesado en shows, contrataciones o prensa? Escríbenos directamente.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- Datos de Contacto Directo / Management -->
+            <div class="md:col-span-5 flex flex-col justify-between space-y-6">
+                <div class="bg-brand-card p-6 rounded-2xl border border-white/10 space-y-6">
+                    <h3 class="text-xl font-bold text-white border-b border-white/10 pb-4">Management & Prensa</h3>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400 block">Email de Contrataciones</span>
+                            <a href="mailto:booking@adrianmusic.com" class="text-white font-medium hover:text-brand-cyan transition-colors">booking@adrianmusic.com</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400 block">Teléfono / WhatsApp</span>
+                            <a href="tel:+1234567890" class="text-white font-medium hover:text-brand-purple transition-colors">+1 (234) 567-890</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-pink/10 text-brand-pink flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400 block">Ubicación Base</span>
+                            <span class="text-white font-medium">Miami, FL / Ciudad de México</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensaje emergente o estatus -->
+                <div class="bg-gradient-to-r from-brand-cyan/10 to-brand-purple/10 p-5 rounded-2xl border border-brand-purple/30">
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        <i class="fa-solid fa-circle-check text-green-400 mr-1.5"></i>
+                        Giras y fechas disponibles para la temporada actual. Respondemos en menos de 24 horas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Formulario de Contacto -->
+            <div class="md:col-span-7 bg-brand-card p-8 rounded-2xl border border-white/10">
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Nombre Completo</label>
+                        <input type="text" required placeholder="Tu nombre o empresa" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Correo Electrónico</label>
+                            <input type="email" required placeholder="correo@ejemplo.com" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Asunto</label>
+                            <select class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple transition-colors text-sm">
+                                <option>Contratación de Show</option>
+                                <option>Prensa / Entrevista</option>
+                                <option>Colaboración Musical</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Mensaje</label>
+                        <textarea rows="4" required placeholder="Escribe los detalles de tu consulta o evento..." class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm resize-none"></textarea>
+                    </div>
+
+                    <!-- Mensaje de confirmación personalizado -->
+                    <div id="form-message" class="hidden text-xs p-3 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300">
+                        ¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink font-bold text-white shadow-lg hover:shadow-neon-pink transition-all duration-300 transform hover:-translate-y-0.5">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-10 px-6 text-center text-gray-500 text-xs sm:text-sm">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p>&copy; 2026 <span class="text-white font-semibold">Adrian Music</span>. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="flex space-x-6 text-lg text-gray-400">
+                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-500 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de interacciones Javascript -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const msg = document.getElementById('form-message');
+            msg.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 5000);
+        }
+function toggleBiography() { var fullBio = document.getElementById("full-bio"); var btn = document.getElementById("read-more-btn"); if (fullBio.style.display === "none") { fullBio.style.display = "block"; btn.innerHTML = "Leer menos"; } else { fullBio.style.display = "none"; btn.innerHTML = "Seguir leyendo"; } }
+    </script>
+</body>
+
+</html>
