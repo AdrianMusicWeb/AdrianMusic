@@ -78,8 +78,17 @@
             opacity: 1;
         }
 
-        .hero-bg {
-            background: radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.18) 0%, rgba(6, 182, 212, 0.12) 35%, rgba(7, 7, 9, 0) 70%);
+        /* Estilos personalizados para el video de fondo en el Hero */
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.25; /* Controla qué tan tenue se ve el video (0.1 a 0.5 recomendado) */
+            filter: blur(8px); /* Difumina ligeramente el video para que no distraiga */
         }
 
         /* Esferas de luz ambiental */
@@ -150,9 +159,20 @@
         </div>
     </nav>
 
-    <!-- 1. SECCIÓN INICIO (HERO SECTION) -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 hero-bg">
-        <div class="max-w-4xl mx-auto text-center z-10">
+    <!-- 1. SECCIÓN INICIO (HERO SECTION) CON VIDEO DE FONDO -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 overflow-hidden">
+        
+        <!-- Video de Fondo Tenue y Difuminado -->
+        <video autoplay muted loop playsinline class="hero-video-bg">
+            <source src="tu-video-fondo.mp4" type="video/mp4">
+            Tu navegador no soporta videos en HTML5.
+        </video>
+
+        <!-- Capa oscura semitransparente adicional para oscurecer el video y mejorar contraste -->
+        <div class="absolute inset-0 bg-brand-dark/70 z-0"></div>
+
+        <!-- Contenido Principal del Hero -->
+        <div class="max-w-4xl mx-auto text-center z-10 relative">
             <!-- Badge / Tag -->
             <span class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-brand-cyan uppercase bg-brand-cyan/10 border border-brand-cyan/30 rounded-full">
                 Artista & Productor Urbano / Latino
@@ -162,7 +182,6 @@
             <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-heading tracking-tight mb-6 uppercase leading-tight">
                 ADRIAN <span class="gradient-text">MUSIC</span>
             </h1>
-
             
             <!-- Botones de llamado a la acción -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
@@ -235,20 +254,6 @@
     </div>
 </section>
 
-<script>
-function toggleBiography() {
-    var fullBio = document.getElementById("full-bio");
-    var btn = document.getElementById("read-more-btn");
-    if (fullBio.style.display === "none") {
-        fullBio.style.display = "block";
-        btn.innerHTML = "Leer menos";
-    } else {
-        fullBio.style.display = "none";
-        btn.innerHTML = "Seguir leyendo";
-    }
-}
-</script>
-
     <!-- 3. SECCIÓN REDES SOCIALES -->
     <section id="redes" class="py-24 px-6 max-w-4xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center mb-12">
@@ -320,10 +325,7 @@ function toggleBiography() {
                 </div>
                 <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
             </a>
-
-
         </div>
-        
     </section>
 
     <!-- 4. SECCIÓN VIDEOS -->
@@ -366,7 +368,6 @@ function toggleBiography() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                     </iframe>
-                    </a>
                 </div>
                 <div class="p-6">
                     <span class="text-xs font-semibold text-brand-cyan uppercase tracking-wider">Tema Musical</span>
@@ -510,8 +511,18 @@ function toggleBiography() {
                 msg.classList.add('hidden');
             }, 5000);
         }
-function toggleBiography() { var fullBio = document.getElementById("full-bio"); var btn = document.getElementById("read-more-btn"); if (fullBio.style.display === "none") { fullBio.style.display = "block"; btn.innerHTML = "Leer menos"; } else { fullBio.style.display = "none"; btn.innerHTML = "Seguir leyendo"; } }
+
+        function toggleBiography() { 
+            var fullBio = document.getElementById("full-bio"); 
+            var btn = document.getElementById("read-more-btn"); 
+            if (fullBio.style.display === "none") { 
+                fullBio.style.display = "block"; 
+                btn.innerHTML = "Leer menos"; 
+            } else { 
+                fullBio.style.display = "none"; 
+                btn.innerHTML = "Seguir leyendo"; 
+            } 
+        }
     </script>
 </body>
-
 </html>
