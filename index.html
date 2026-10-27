@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <!-- Configuración personalizada de Tailwind -->
+    <!-- Configuración personalizada de Tailwind con colores tierra y turquesa -->
     <script>
         tailwind.config = {
             theme: {
@@ -27,40 +27,40 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#070709',
-                            card: '#121218',
-                            purple: '#a855f7',
-                            cyan: '#06b6d4',
-                            pink: '#ec4899',
+                            dark: '#1c1917',     /* Fondo tierra oscuro muy elegante (Stone 900) */
+                            card: '#292524',     /* Tarjetas de fondo suave (Stone 800) */
+                            sand: '#f5f5f4',     /* Texto claro y neutro limpio */
+                            earth: '#d97706',    /* Acento tierra cálido */
+                            turquoise: '#14b8a6',/* Turquesa estético y brillante */
+                            turquoiseLight: '#2dd4bf'
                         }
                     },
                     boxShadow: {
-                        'neon-purple': '0 0 25px -5px rgba(168, 85, 247, 0.4)',
-                        'neon-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.4)',
-                        'neon-pink': '0 0 25px -5px rgba(236, 72, 153, 0.4)',
+                        'neon-turquoise': '0 0 25px -5px rgba(20, 184, 166, 0.3)',
+                        'neon-earth': '0 0 25px -5px rgba(217, 119, 6, 0.3)',
                     }
                 }
             }
         }
     </script>
 
-    <!-- Custom CSS para animaciones y efectos -->
+    <!-- Custom CSS para animaciones y efectos limpios -->
     <style>
         body {
-            background-color: #070709;
-            color: #f3f4f6;
+            background-color: #1c1917;
+            color: #f5f5f4;
             top: 0px !important;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #06b6d4 0%, #a855f7 50%, #ec4899 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #fde047 50%, #fb923c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .gradient-border {
             position: relative;
-            background: #121218;
+            background: #292524;
             border-radius: 1.25rem;
         }
 
@@ -69,10 +69,10 @@
             position: absolute;
             inset: -1px;
             border-radius: 1.3rem;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.4), rgba(217, 119, 6, 0.4));
             z-index: -1;
             transition: opacity 0.3s ease;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .gradient-border:hover::before {
@@ -88,19 +88,19 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.50;
+            opacity: 0.35;
             filter: blur(1px);
         }
 
-        /* Esferas de luz ambiental */
+        /* Esferas de luz ambiental en tonos tierra y turquesa */
         .glow-sphere-1 {
             position: absolute;
             top: 5%;
             left: -10%;
             width: 450px;
             height: 450px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
-            filter: blur(70px);
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(80px);
             pointer-events: none;
         }
 
@@ -110,8 +110,8 @@
             right: -10%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
-            filter: blur(70px);
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(80px);
             pointer-events: none;
         }
 
@@ -121,7 +121,7 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-brand-purple selection:text-white relative overflow-x-hidden">
+<body class="font-sans antialiased selection:bg-brand-turquoise selection:text-white relative overflow-x-hidden">
 
     <!-- Ambient Glow Spheres -->
     <div class="glow-sphere-1"></div>
@@ -131,20 +131,20 @@
     <div id="google_translate_element"></div>
 
     <!-- NAVBAR FIJO CON MENÚ DE IDIOMAS DESPLEGABLE -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#1c1917]/90 backdrop-blur-md border-b border-stone-800">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Logo / Nombre -->
-            <a href="#inicio" class="text-2xl font-black font-heading tracking-wider gradient-text hover:opacity-90 transition-opacity">
-                ADRIAN MUSIC
+            <a href="#inicio" class="text-2xl font-black font-heading tracking-wider text-white hover:opacity-90 transition-opacity">
+                ADRIAN <span class="text-brand-turquoise">MUSIC</span>
             </a>
             
             <!-- Enlaces Desktop -->
-            <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-gray-300">
-                <a href="#inicio" class="hover:text-brand-cyan transition-colors">Inicio</a>
-                <a href="#biografia" class="hover:text-brand-cyan transition-colors">Biografía</a>
-                <a href="#redes" class="hover:text-brand-purple transition-colors">Redes Sociales</a>
-                <a href="#videos" class="hover:text-brand-pink transition-colors">Videos</a>
-                <a href="#contacto" class="hover:text-brand-cyan transition-colors">Contacto</a>
+            <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-stone-300">
+                <a href="#inicio" class="hover:text-brand-turquoise transition-colors">Inicio</a>
+                <a href="#biografia" class="hover:text-brand-turquoise transition-colors">Biografía</a>
+                <a href="#redes" class="hover:text-brand-turquoise transition-colors">Redes Sociales</a>
+                <a href="#videos" class="hover:text-brand-turquoise transition-colors">Videos</a>
+                <a href="#contacto" class="hover:text-brand-turquoise transition-colors">Contacto</a>
             </div>
 
             <!-- Acciones a la derecha: Selector de Idiomas + Botón Contrataciones -->
@@ -152,61 +152,61 @@
                 
                 <!-- Desplegable Personalizado de Idiomas -->
                 <div class="relative inline-block text-left">
-                    <button onclick="toggleLangDropdown('desktop-lang-menu')" class="flex items-center gap-2 bg-brand-card hover:bg-white/10 border border-white/10 rounded-full px-4 py-2 text-xs font-semibold text-gray-300 transition-colors">
-                        <i class="fa-solid fa-globe text-brand-cyan"></i>
+                    <button onclick="toggleLangDropdown('desktop-lang-menu')" class="flex items-center gap-2 bg-brand-card hover:bg-stone-700 border border-stone-700 rounded-full px-4 py-2 text-xs font-semibold text-stone-200 transition-colors">
+                        <i class="fa-solid fa-globe text-brand-turquoise"></i>
                         <span id="current-lang-text">Español</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-stone-400"></i>
                     </button>
 
                     <!-- Lista desplegable -->
-                    <div id="desktop-lang-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-brand-card border border-white/10 shadow-2xl py-2 z-50">
-                        <button onclick="translateLanguage('es', 'Español')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                    <div id="desktop-lang-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-brand-card border border-stone-700 shadow-2xl py-2 z-50">
+                        <button onclick="translateLanguage('es', 'Español')" class="w-full text-left px-4 py-2 text-xs text-stone-200 hover:bg-stone-700 hover:text-brand-turquoise flex items-center justify-between">
                             Español <span>🇪🇸</span>
                         </button>
-                        <button onclick="translateLanguage('en', 'English')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                        <button onclick="translateLanguage('en', 'English')" class="w-full text-left px-4 py-2 text-xs text-stone-200 hover:bg-stone-700 hover:text-brand-turquoise flex items-center justify-between">
                             English <span>🇺🇸</span>
                         </button>
-                        <button onclick="translateLanguage('pt', 'Português')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                        <button onclick="translateLanguage('pt', 'Português')" class="w-full text-left px-4 py-2 text-xs text-stone-200 hover:bg-stone-700 hover:text-brand-turquoise flex items-center justify-between">
                             Português <span>🇧🇷</span>
                         </button>
-                        <button onclick="translateLanguage('fr', 'Français')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                        <button onclick="translateLanguage('fr', 'Français')" class="w-full text-left px-4 py-2 text-xs text-stone-200 hover:bg-stone-700 hover:text-brand-turquoise flex items-center justify-between">
                             Français <span>🇫🇷</span>
                         </button>
-                        <button onclick="translateLanguage('de', 'Deutsch')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                        <button onclick="translateLanguage('de', 'Deutsch')" class="w-full text-left px-4 py-2 text-xs text-stone-200 hover:bg-stone-700 hover:text-brand-turquoise flex items-center justify-between">
                             Deutsch <span>🇩🇪</span>
                         </button>
-                        <button onclick="translateLanguage('it', 'Italiano')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                        <button onclick="translateLanguage('it', 'Italiano')" class="w-full text-left px-4 py-2 text-xs text-stone-200 hover:bg-stone-700 hover:text-brand-turquoise flex items-center justify-between">
                             Italiano <span>🇮🇹</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- Botón de Contrataciones -->
-                <a href="#contacto" class="px-5 py-2 text-xs font-semibold uppercase tracking-wider rounded-full bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink text-white hover:shadow-neon-purple transition-all duration-300 transform hover:-translate-y-0.5">
+                <a href="#contacto" class="px-5 py-2 text-xs font-semibold uppercase tracking-wider rounded-full bg-brand-turquoise text-stone-950 font-bold hover:bg-brand-turquoiseLight transition-all duration-300 transform hover:-translate-y-0.5 shadow-md">
                     Contrataciones
                 </a>
             </div>
 
             <!-- Botón Menú Móvil -->
-            <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-gray-300 hover:text-white focus:outline-none text-2xl">
+            <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-stone-300 hover:text-white focus:outline-none text-2xl">
                 <i class="fa-solid fa-bars" id="menu-icon"></i>
             </button>
         </div>
 
         <!-- Menú Desplegable Móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-white/10 px-6 py-6 flex-col space-y-4 text-center font-medium text-gray-300">
-            <a href="#inicio" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Inicio</a>
-            <a href="#biografia" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Biografía</a>
-            <a href="#redes" onclick="toggleMenu()" class="hover:text-brand-purple py-1 border-b border-white/5">Redes Sociales</a>
-            <a href="#videos" onclick="toggleMenu()" class="hover:text-brand-pink py-1 border-b border-white/5">Videos</a>
-            <a href="#contacto" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Contacto</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-stone-800 px-6 py-6 flex-col space-y-4 text-center font-medium text-stone-300">
+            <a href="#inicio" onclick="toggleMenu()" class="hover:text-brand-turquoise py-1 border-b border-stone-800">Inicio</a>
+            <a href="#biografia" onclick="toggleMenu()" class="hover:text-brand-turquoise py-1 border-b border-stone-800">Biografía</a>
+            <a href="#redes" onclick="toggleMenu()" class="hover:text-brand-turquoise py-1 border-b border-stone-800">Redes Sociales</a>
+            <a href="#videos" onclick="toggleMenu()" class="hover:text-brand-turquoise py-1 border-b border-stone-800">Videos</a>
+            <a href="#contacto" onclick="toggleMenu()" class="hover:text-brand-turquoise py-1 border-b border-stone-800">Contacto</a>
             
             <!-- Selector de Idioma en Móvil -->
             <div class="pt-2 flex flex-wrap justify-center gap-2">
-                <button onclick="translateLanguage('es', 'Español')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇪🇸 ES</button>
-                <button onclick="translateLanguage('en', 'English')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇺🇸 EN</button>
-                <button onclick="translateLanguage('pt', 'Português')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇧🇷 PT</button>
-                <button onclick="translateLanguage('fr', 'Français')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇫🇷 FR</button>
+                <button onclick="translateLanguage('es', 'Español')" class="px-3 py-1.5 text-xs bg-brand-dark border border-stone-700 rounded-full text-stone-300">🇪🇸 ES</button>
+                <button onclick="translateLanguage('en', 'English')" class="px-3 py-1.5 text-xs bg-brand-dark border border-stone-700 rounded-full text-stone-300">🇺🇸 EN</button>
+                <button onclick="translateLanguage('pt', 'Português')" class="px-3 py-1.5 text-xs bg-brand-dark border border-stone-700 rounded-full text-stone-300">🇧🇷 PT</button>
+                <button onclick="translateLanguage('fr', 'Français')" class="px-3 py-1.5 text-xs bg-brand-dark border border-stone-700 rounded-full text-stone-300">🇫🇷 FR</button>
             </div>
         </div>
     </nav>
@@ -221,28 +221,28 @@
         </video>
 
         <!-- Capa oscura semitransparente -->
-        <div class="absolute inset-0 bg-brand-dark/70 z-0"></div>
+        <div class="absolute inset-0 bg-brand-dark/80 z-0"></div>
 
         <!-- Contenido Principal del Hero -->
         <div class="max-w-4xl mx-auto text-center z-10 relative">
             <!-- Badge / Tag -->
-            <span class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-brand-cyan uppercase bg-brand-cyan/10 border border-brand-cyan/30 rounded-full">
+            <span class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-brand-turquoise uppercase bg-brand-turquoise/10 border border-brand-turquoise/30 rounded-full">
                 Artista & Productor Urbano / Latino
             </span>
 
             <!-- Título Principal -->
-            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-heading tracking-tight mb-6 uppercase leading-tight">
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-heading tracking-tight mb-6 uppercase leading-tight text-white">
                 ADRIAN <span class="gradient-text">MUSIC</span>
             </h1>
             
             <!-- Botones de llamado a la acción -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <a href="#redes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-cyan to-brand-purple font-bold text-white shadow-lg hover:shadow-neon-purple transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                <a href="#redes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-turquoise font-bold text-stone-950 shadow-lg hover:bg-brand-turquoiseLight transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
                     <i class="fa-solid fa-headphones text-lg"></i>
                     Escuchar Ahora
                 </a>
-                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 font-bold text-white border border-white/20 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-3 hover:border-brand-pink">
-                    <i class="fa-solid fa-envelope text-sm"></i>
+                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-full bg-stone-800/80 hover:bg-stone-700 font-bold text-stone-200 border border-stone-700 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-envelope text-sm text-brand-turquoise"></i>
                     Contacto & Booking
                 </a>
             </div>
@@ -251,44 +251,44 @@
 
     <!-- 2. SECCIÓN BIOGRAFÍA -->
     <section id="biografia" class="py-24 px-6 max-w-5xl mx-auto relative z-10 scroll-mt-20">
-        <div class="gradient-border p-8 md:p-12">
+        <div class="gradient-border p-8 md:p-12 shadow-xl">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 
                 <!-- Avatar / Foto del Artista -->
                 <div class="md:col-span-5 relative group">
-                    <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                    <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-stone-700">
                         <img src="Foto Adrian/Que Tú Que Yo Adrian.png" 
                              alt="Adrian Music" 
                              class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-all duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
                     </div>
-                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-brand-purple/40 rounded-2xl -z-10"></div>
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-brand-turquoise/30 rounded-2xl -z-10"></div>
                 </div>
 
                 <!-- Trayectoria e Historia -->
                 <div class="md:col-span-7">
-                    <span class="text-xs font-semibold text-brand-purple uppercase tracking-widest block mb-1">Trayectoria & Estilo</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-4">
+                    <span class="text-xs font-semibold text-brand-turquoise uppercase tracking-widest block mb-1">Trayectoria & Estilo</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-4 text-white">
                         Sobre <span class="gradient-text">Adrian Music</span>
                     </h2>
                     
                     <!-- Resumen inicial -->
-                    <p class="text-gray-300 leading-relaxed text-base text-justify mb-6">
-                        Cantautor y productor musical formado en percusión latina y composición. Tras consolidar su carrera solista (<strong class="text-white">“Escúchame”</strong>, <strong class="text-white">“¿Qué Nos Pasó?”</strong>) y trabajar en producción junto a Baudhy La Bestia Armoniosa y la agrupación Esto Es Clandestino, actualmente se encuentra trabajando de la mano del reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-purple">"Dimelojen"</strong>, en sus próximos lanzamientos.
+                    <p class="text-stone-300 leading-relaxed text-base text-justify mb-6">
+                        Cantautor y productor musical formado en percusión latina y composición. Tras consolidar su carrera solista (<strong class="text-white">“Escúchame”</strong>, <strong class="text-white">“¿Qué Nos Pasó?”</strong>) y trabajar en producción junto a Baudhy La Bestia Armoniosa y la agrupación Esto Es Clandestino, actualmente se encuentra trabajando de la mano del reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-turquoise">"Dimelojen"</strong>, en sus próximos lanzamientos.
                     </p>
 
                     <!-- Botón de Leer Más -->
-                    <button id="read-more-btn" class="border border-brand-purple rounded-full px-6 py-2 text-brand-purple hover:bg-brand-purple hover:text-white transition duration-300 mb-4" onclick="toggleBiography()">
+                    <button id="read-more-btn" class="border border-brand-turquoise rounded-full px-6 py-2 text-brand-turquoise hover:bg-brand-turquoise hover:text-stone-950 transition duration-300 mb-4 font-medium" onclick="toggleBiography()">
                         Seguir leyendo
                     </button>
 
                     <!-- Biografía completa desplegable alineada -->
-                    <div id="full-bio" style="display: none;" class="space-y-4 text-gray-300 text-sm md:text-base text-justify leading-relaxed mt-4 pt-4 border-t border-white/10">
+                    <div id="full-bio" style="display: none;" class="space-y-4 text-stone-300 text-sm md:text-base text-justify leading-relaxed mt-4 pt-4 border-t border-stone-700">
                         <p>
                             Nació el 12 de octubre de 1990 y desde muy pequeño mostró una profunda pasión por la música y la escritura. Sus primeros pasos en la composición comenzaron expresando sentimientos a través de poesías y versos con ritmo y coherencia, los cuales con el tiempo transformó en canciones.
                         </p>
                         <p>
-                            Tras formarse en <span class="text-brand-purple font-medium">percusión latina</span>, comenzó a crear las instrumentales de sus propios temas. Durante su etapa universitaria formó parte de la agrupación <em>Grupo Alternativa</em>, abriéndose paso en la escena musical.
+                            Tras formarse en <span class="text-brand-turquoise font-medium">percusión latina</span>, comenzó a crear las instrumentales de sus propios temas. Durante su etapa universitaria formó parte de la agrupación <em>Grupo Alternativa</em>, abriéndose paso en la escena musical.
                         </p>
                         <p>
                             En 2014 formalizó su debut como solista con el tema <strong class="text-white">“Enamorado de ti”</strong>. Más adelante consolidó su propuesta musical con los lanzamientos de <strong class="text-white">“Escúchame”</strong> (2016) y <strong class="text-white">“¿Qué Nos Pasó?”</strong> (2018), sencillos con los que logró darse a conocer en medios de comunicación y presentaciones en vivo.
@@ -296,8 +296,8 @@
                         <p>
                             A la par de su faceta como intérprete, ha mantenido una sólida labor como productor y compositor, creando letras y beats tanto para él como para otros artistas. Participó en la producción de los temas <strong class="text-white">“Aguardiente”</strong> y <strong class="text-white">“En la Orilla de la Playa”</strong> junto al reconocido productor <em>Baudhy La Bestia Armoniosa</em>, y ha ejercido como productor musical de la agrupación <em>“Esto Es Clandestino”</em>.
                         </p>
-                        <p class="border-l-2 border-brand-purple pl-4 italic text-gray-400">
-                            En la actualidad, Adrián continúa evolucionando en su propuesta sonora y se encuentra trabajando en conjunto con el reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-purple font-normal font-sans">"Dimelojen"</strong>, en la producción de sus nuevos temas.
+                        <p class="border-l-2 border-brand-turquoise pl-4 italic text-stone-400">
+                            En la actualidad, Adrián continúa evolucionando en su propuesta sonora y se encuentra trabajando en conjunto con el reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-turquoise font-normal font-sans">"Dimelojen"</strong>, en la producción de sus nuevos temas.
                         </p>
                     </div>
 
@@ -309,73 +309,73 @@
     <!-- 3. SECCIÓN REDES SOCIALES -->
     <section id="redes" class="py-24 px-6 max-w-4xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center mb-12">
-            <span class="text-xs font-semibold text-brand-cyan uppercase tracking-widest block mb-1">Plataformas Oficiales</span>
-            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3">
+            <span class="text-xs font-semibold text-brand-turquoise uppercase tracking-widest block mb-1">Plataformas Oficiales</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3 text-white">
                 Conéctate con <span class="gradient-text">Adrian Music</span>
             </h2>
-            <p class="text-gray-400 text-sm sm:text-base">Sígueme y escucha mi música en todas las plataformas digitales.</p>
+            <p class="text-stone-400 text-sm sm:text-base">Sígueme y escucha mi música en todas las plataformas digitales.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
             <!-- Spotify -->
-            <a href="https://open.spotify.com/intl-es/artist/3ggm2ZRw3o3G4PLgajdxGz?si=F_g-62M1TbKAF8XECMcyxQ" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-green-500/50">
-                <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all text-2xl mr-4">
+            <a href="https://open.spotify.com/intl-es/artist/3ggm2ZRw3o3G4PLgajdxGz?si=F_g-62M1TbKAF8XECMcyxQ" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-stone-700/80 border border-stone-700 transition-all duration-300 group hover:border-green-500/50">
+                <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 group-hover:bg-green-500 group-hover:text-stone-950 transition-all text-2xl mr-4">
                     <i class="fa-brands fa-spotify"></i>
                 </div>
                 <div class="flex-grow">
-                    <h3 class="font-bold text-white group-hover:text-green-400 transition-colors">Spotify</h3>
-                    <p class="text-xs text-gray-400">Escucha la discografía completa</p>
+                    <h3 class="font-bold text-white group-hover:text-green-300 transition-colors">Spotify</h3>
+                    <p class="text-xs text-stone-400">Escucha la discografía completa</p>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square text-stone-500 group-hover:text-white text-sm"></i>
             </a>
 
             <!-- YouTube -->
-            <a href="https://www.youtube.com/@OfficialAdrianMusic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-red-500/50">
-                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all text-2xl mr-4">
+            <a href="https://www.youtube.com/@OfficialAdrianMusic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-stone-700/80 border border-stone-700 transition-all duration-300 group hover:border-red-500/50">
+                <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 group-hover:bg-red-500 group-hover:text-stone-950 transition-all text-2xl mr-4">
                     <i class="fa-brands fa-youtube"></i>
                 </div>
                 <div class="flex-grow">
-                    <h3 class="font-bold text-white group-hover:text-red-400 transition-colors">YouTube</h3>
-                    <p class="text-xs text-gray-400">Videoclips & En Vivo</p>
+                    <h3 class="font-bold text-white group-hover:text-red-300 transition-colors">YouTube</h3>
+                    <p class="text-xs text-stone-400">Videoclips & En Vivo</p>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square text-stone-500 group-hover:text-white text-sm"></i>
             </a>
 
             <!-- Instagram -->
-            <a href="https://www.instagram.com/adrianmusic/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-pink-500/50">
-                <div class="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-500 group-hover:bg-gradient-to-tr group-hover:from-amber-500 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-white transition-all text-2xl mr-4">
+            <a href="https://www.instagram.com/adrianmusic/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-stone-700/80 border border-stone-700 transition-all duration-300 group hover:border-pink-500/50">
+                <div class="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover:bg-gradient-to-tr group-hover:from-amber-500 group-hover:via-pink-500 group-hover:to-purple-500 group-hover:text-stone-950 transition-all text-2xl mr-4">
                     <i class="fa-brands fa-instagram"></i>
                 </div>
                 <div class="flex-grow">
-                    <h3 class="font-bold text-white group-hover:text-pink-400 transition-colors">Instagram</h3>
-                    <p class="text-xs text-gray-400">Historias & Día a Día</p>
+                    <h3 class="font-bold text-white group-hover:text-pink-300 transition-colors">Instagram</h3>
+                    <p class="text-xs text-stone-400">Historias & Día a Día</p>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square text-stone-500 group-hover:text-white text-sm"></i>
             </a>
 
             <!-- TikTok -->
-            <a href="https://www.tiktok.com/@adrianmusiic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-cyan-500/50">
-                <div class="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all text-2xl mr-4">
+            <a href="https://www.tiktok.com/@adrianmusiic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-stone-700/80 border border-stone-700 transition-all duration-300 group hover:border-brand-turquoise/50">
+                <div class="w-12 h-12 rounded-lg bg-brand-turquoise/10 flex items-center justify-center text-brand-turquoise group-hover:bg-brand-turquoise group-hover:text-stone-950 transition-all text-2xl mr-4">
                     <i class="fa-brands fa-tiktok"></i>
                 </div>
                 <div class="flex-grow">
-                    <h3 class="font-bold text-white group-hover:text-cyan-400 transition-colors">TikTok</h3>
-                    <p class="text-xs text-gray-400">Avances & Challenges</p>
+                    <h3 class="font-bold text-white group-hover:text-brand-turquoiseLight transition-colors">TikTok</h3>
+                    <p class="text-xs text-stone-400">Avances & Challenges</p>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square text-stone-500 group-hover:text-white text-sm"></i>
             </a>
 
            <!-- Facebook -->
-            <a href="https://www.facebook.com/OfficialAdrianMusic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-blue-500/50 sm:col-span-2">
-                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all text-2xl mr-4">
+            <a href="https://www.facebook.com/OfficialAdrianMusic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-stone-700/80 border border-stone-700 transition-all duration-300 group hover:border-blue-500/50 sm:col-span-2">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-stone-950 transition-all text-2xl mr-4">
                     <i class="fa-brands fa-facebook"></i>
                 </div>
                 <div class="flex-grow">
-                    <h3 class="font-bold text-white group-hover:text-blue-400 transition-colors">Facebook</h3>
-                    <p class="text-xs text-gray-400">Avances & Conexión</p>
+                    <h3 class="font-bold text-white group-hover:text-blue-300 transition-colors">Facebook</h3>
+                    <p class="text-xs text-stone-400">Avances & Conexión</p>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white text-sm"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square text-stone-500 group-hover:text-white text-sm"></i>
             </a>
         </div>
     </section>
@@ -383,17 +383,17 @@
     <!-- 4. SECCIÓN VIDEOS -->
     <section id="videos" class="py-24 px-6 max-w-6xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center mb-12">
-            <span class="text-xs font-semibold text-brand-pink uppercase tracking-widest block mb-1">Galería Audiovisual</span>
-            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3">
+            <span class="text-xs font-semibold text-brand-turquoise uppercase tracking-widest block mb-1">Galería Audiovisual</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3 text-white">
                 Últimos <span class="gradient-text">Videoclips</span>
             </h2>
-            <p class="text-gray-400 text-sm sm:text-base">Mira las producciones visuales y actuaciones en vivo.</p>
+            <p class="text-stone-400 text-sm sm:text-base">Mira las producciones visuales y actuaciones en vivo.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             <!-- Video 1 - Reproductor Embebido -->
-            <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/10 hover:border-brand-purple/50 transition-all duration-300 group">
+            <div class="bg-brand-card rounded-2xl overflow-hidden border border-stone-700 hover:border-brand-turquoise/50 transition-all duration-300 group shadow-lg">
                 <div class="relative aspect-video w-full">
                     <iframe class="w-full h-full" 
                             src="https://www.youtube.com/embed/TNqpaLmWDr4" 
@@ -404,15 +404,15 @@
                     </iframe>
                 </div>
                 <div class="p-6">
-                    <span class="text-xs font-semibold text-brand-purple uppercase tracking-wider">Último Sencillo</span>
-                    <h3 class="text-xl font-bold text-white mt-1 group-hover:text-brand-cyan transition-colors">Que Tú Que Yo (Official Video)</h3>
-                    <p class="text-gray-400 text-sm mt-2">Sencillo principal con producción cinematográfica grabada en la ciudad.</p>
+                    <span class="text-xs font-semibold text-brand-turquoise uppercase tracking-wider">Último Sencillo</span>
+                    <h3 class="text-xl font-bold text-white mt-1 group-hover:text-brand-turquoiseLight transition-colors">Que Tú Que Yo (Official Video)</h3>
+                    <p class="text-stone-400 text-sm mt-2">Sencillo principal con producción cinematográfica grabada en la ciudad.</p>
                 </div>
             </div>
 
             <!-- Video 2 - Tarjeta Interactiva / En vivo -->
-            <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/10 hover:border-brand-cyan/50 transition-all duration-300 group">
-                <div class="relative aspect-video w-full bg-slate-900 flex items-center justify-center overflow-hidden">
+            <div class="bg-brand-card rounded-2xl overflow-hidden border border-stone-700 hover:border-brand-turquoise/50 transition-all duration-300 group shadow-lg">
+                <div class="relative aspect-video w-full bg-stone-950 flex items-center justify-center overflow-hidden">
                     <iframe class="w-full h-full" 
                             src="https://www.youtube.com/embed/UEYH7BEh-N8?si=rkOmQ92fTHxTqbQ9" 
                             title="Volverte A Ver - Adrian Video Oficial"
@@ -422,9 +422,9 @@
                     </iframe>
                 </div>
                 <div class="p-6">
-                    <span class="text-xs font-semibold text-brand-cyan uppercase tracking-wider">Tema Musical</span>
-                    <h3 class="text-xl font-bold text-white mt-1 group-hover:text-brand-purple transition-colors">Volverte A Ver - Adrian Video Oficial</h3>
-                    <p class="text-gray-400 text-sm mt-2">Sencillo principal con producción cinematográfica grabada en la ciudad.</p>
+                    <span class="text-xs font-semibold text-brand-turquoise uppercase tracking-wider">Tema Musical</span>
+                    <h3 class="text-xl font-bold text-white mt-1 group-hover:text-brand-turquoiseLight transition-colors">Volverte A Ver - Adrian Video Oficial</h3>
+                    <p class="text-stone-400 text-sm mt-2">Sencillo principal con producción cinematográfica grabada en la ciudad.</p>
                 </div>
             </div>
 
@@ -434,101 +434,100 @@
     <!-- 5. SECCIÓN CONTACTO -->
     <section id="contacto" class="py-24 px-6 max-w-5xl mx-auto relative z-10 scroll-mt-20">
         <div class="text-center mb-12">
-            <span class="text-xs font-semibold text-brand-purple uppercase tracking-widest block mb-1">Booking & Management</span>
-            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3">
+            <span class="text-xs font-semibold text-brand-turquoise uppercase tracking-widest block mb-1">Booking & Management</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-3 text-white">
                 Ponte en <span class="gradient-text">Contacto</span>
             </h2>
-            <p class="text-gray-400 text-sm sm:text-base">¿Interesado en shows, contrataciones o prensa? Escríbenos directamente.</p>
+            <p class="text-stone-400 text-sm sm:text-base">¿Interesado en shows, contrataciones o prensa? Escríbenos directamente.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             <!-- Datos de Contacto Directo / Management -->
             <div class="md:col-span-5 flex flex-col justify-between space-y-6">
-                <div class="bg-brand-card p-6 rounded-2xl border border-white/10 space-y-6">
-                    <h3 class="text-xl font-bold text-white border-b border-white/10 pb-4">Management & Prensa</h3>
+                <div class="bg-brand-card p-6 rounded-2xl border border-stone-700 space-y-6 shadow-lg">
+                    <h3 class="text-xl font-bold text-white border-b border-stone-700 pb-4">Management & Prensa</h3>
                     <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 rounded-lg bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-lg shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-brand-turquoise/10 text-brand-turquoise flex items-center justify-center text-lg shrink-0">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div>
-                            <span class="text-xs text-gray-400 block">Email de Contrataciones</span>
-                            <a href="mailto:bookingadrianmusic@gmail.com" class="text-white font-medium hover:text-brand-cyan transition-colors">booking@adrianmusic.com</a>
+                            <span class="text-xs text-stone-400 block">Email de Contrataciones</span>
+                            <a href="mailto:bookingadrianmusic@gmail.com" class="text-white font-medium hover:text-brand-turquoise transition-colors">booking@adrianmusic.com</a>
                         </div>
                     </div>
 
                     <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 rounded-lg bg-brand-pink/10 text-brand-pink flex items-center justify-center text-lg shrink-0">
+                        <div class="w-10 h-10 rounded-lg bg-brand-earth/20 text-brand-earth flex items-center justify-center text-lg shrink-0">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div>
-                            <span class="text-xs text-gray-400 block">Ubicación Base</span>
+                            <span class="text-xs text-stone-400 block">Ubicación Base</span>
                             <span class="text-white font-medium">Caracas / Venezuela</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mensaje emergente o estatus -->
-                <div class="bg-gradient-to-r from-brand-cyan/10 to-brand-purple/10 p-5 rounded-2xl border border-brand-purple/30">
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        <i class="fa-solid fa-circle-check text-green-400 mr-1.5"></i>
+                <div class="bg-gradient-to-r from-brand-turquoise/10 to-brand-earth/10 p-5 rounded-2xl border border-stone-700">
+                    <p class="text-xs text-stone-300 leading-relaxed">
+                        <i class="fa-solid fa-circle-check text-brand-turquoise mr-1.5"></i>
                         Giras y fechas disponibles para la temporada actual. Respondemos en menos de 24 horas.
                     </p>
                 </div>
             </div>
 
-            <!-- Formulario de Contacto -->
             <!-- Formulario de Contacto Conectado a Formspree -->
-<div class="md:col-span-7 bg-brand-card p-8 rounded-2xl border border-white/10">
-    <form action="https://formspree.io/f/mzeeroal" method="POST" class="space-y-5">
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Nombre Completo</label>
-            <input type="text" name="name" required placeholder="Tu nombre o empresa" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
-        </div>
+            <div class="md:col-span-7 bg-brand-card p-8 rounded-2xl border border-stone-700 shadow-lg">
+                <form action="https://formspree.io/f/mzeeroal" method="POST" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Nombre Completo</label>
+                        <input type="text" name="name" required placeholder="Tu nombre o empresa" class="w-full bg-brand-dark border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-brand-turquoise transition-colors text-sm">
+                    </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Correo Electrónico</label>
-                <input type="email" name="email" required placeholder="correo@ejemplo.com" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Correo Electrónico</label>
+                            <input type="email" name="email" required placeholder="correo@ejemplo.com" class="w-full bg-brand-dark border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-brand-turquoise transition-colors text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Asunto</label>
+                            <select name="subject" class="w-full bg-brand-dark border border-stone-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-turquoise transition-colors text-sm">
+                                <option value="Contratación de Show">Contratación de Show</option>
+                                <option value="Prensa / Entrevista">Prensa / Entrevista</option>
+                                <option value="Colaboración Musical">Colaboración Musical</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Mensaje</label>
+                        <textarea name="message" rows="4" required placeholder="Escribe los detalles de tu consulta o evento..." class="w-full bg-brand-dark border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-brand-turquoise transition-colors text-sm resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-brand-turquoise font-bold text-stone-950 shadow-lg hover:bg-brand-turquoiseLight transition-all duration-300 transform hover:-translate-y-0.5">
+                        Enviar Mensaje
+                    </button>
+                </form>
             </div>
-            <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Asunto</label>
-                <select name="subject" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple transition-colors text-sm">
-                    <option value="Contratación de Show">Contratación de Show</option>
-                    <option value="Prensa / Entrevista">Prensa / Entrevista</option>
-                    <option value="Colaboración Musical">Colaboración Musical</option>
-                    <option value="Otro">Otro</option>
-                </select>
-            </div>
-        </div>
-
-        <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Mensaje</label>
-            <textarea name="message" rows="4" required placeholder="Escribe los detalles de tu consulta o evento..." class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm resize-none"></textarea>
-        </div>
-
-        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink font-bold text-white shadow-lg hover:shadow-neon-pink transition-all duration-300 transform hover:-translate-y-0.5">
-            Enviar Mensaje
-        </button>
-    </form>
-</div>
 
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-white/10 py-10 px-6 text-center text-gray-500 text-xs sm:text-sm">
+    <footer class="border-t border-stone-800 py-10 px-6 text-center text-stone-400 text-xs sm:text-sm">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div>
                 <p>&copy; 2026 <span class="text-white font-semibold">Adrian Music</span>. Todos los derechos reservados.</p>
             </div>
             
-            <div class="flex space-x-6 text-lg text-gray-400">
-                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors"><i class="fa-brands fa-spotify"></i></a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-red-500 transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+            <div class="flex space-x-6 text-lg text-stone-400">
+                <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-turquoise transition-colors"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-turquoise transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-turquoise transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-turquoise transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-turquoise transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
     </footer>
@@ -548,16 +547,6 @@
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
             }
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const msg = document.getElementById('form-message');
-            msg.classList.remove('hidden');
-            e.target.reset();
-            setTimeout(() => {
-                msg.classList.add('hidden');
-            }, 5000);
         }
 
         function toggleBiography() { 
