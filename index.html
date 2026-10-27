@@ -115,6 +115,13 @@
             pointer-events: none;
         }
 
+        /* Transición fluida para los elementos animados al hacer scroll */
+        .hero-anim-element {
+            display: inline-block;
+            transition: transform 0.15s linear, opacity 0.15s linear;
+            will-change: transform, opacity;
+        }
+
         /* Ocultar elementos nativos de Google Translate */
         .goog-te-banner-frame, .skiptranslate, #google_translate_element {
             display: none !important;
@@ -130,10 +137,10 @@
     <!-- Contenedor oculto de Google Translate -->
     <div id="google_translate_element"></div>
 
-    <!-- NAVBAR FIJO CON MENÚ DE IDIOMAS DESPLEGABLE -->
+    <!-- NAVBAR FIJO (ESTÁTICO) -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-[#1c1917]/90 backdrop-blur-md border-b border-stone-800">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo / Nombre -->
+            <!-- Logo / Nombre Fijo -->
             <a href="#inicio" class="text-2xl font-black font-heading tracking-wider text-white hover:opacity-90 transition-opacity">
                 ADRIAN <span class="text-brand-turquoise">MUSIC</span>
             </a>
@@ -225,26 +232,34 @@
 
         <!-- Contenido Principal del Hero -->
         <div class="max-w-4xl mx-auto text-center z-10 relative">
-            <!-- Badge / Tag -->
-            <span class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-brand-turquoise uppercase bg-brand-turquoise/10 border border-brand-turquoise/30 rounded-full">
-                Artista & Productor Urbano / Latino
-            </span>
+            
+            <!-- Badge / Tag (Sube hacia arriba y se desvanece) -->
+            <div id="hero-badge" class="hero-anim-element mb-6">
+                <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest text-brand-turquoise uppercase bg-brand-turquoise/10 border border-brand-turquoise/30 rounded-full">
+                    Artista & Productor Urbano / Latino
+                </span>
+            </div>
 
-            <!-- Título Principal -->
-            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-heading tracking-tight mb-6 uppercase leading-tight text-white">
-                ADRIAN <span class="gradient-text">MUSIC</span>
+            <!-- Título Principal (ADRIAN va a la izquierda, MUSIC a la derecha) -->
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-heading tracking-tight mb-6 uppercase leading-tight text-white py-2 flex justify-center items-center gap-4">
+                <span id="hero-title-adrian" class="hero-anim-element">ADRIAN</span>
+                <span id="hero-title-music" class="hero-anim-element gradient-text">MUSIC</span>
             </h1>
             
-            <!-- Botones de llamado a la acción -->
+            <!-- Botones (Escuchar Ahora va a la izquierda con Adrian, Contacto a la derecha con Music) -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <a href="#redes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-turquoise font-bold text-stone-950 shadow-lg hover:bg-brand-turquoiseLight transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-headphones text-lg"></i>
-                    Escuchar Ahora
-                </a>
-                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-full bg-stone-800/80 hover:bg-stone-700 font-bold text-stone-200 border border-stone-700 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-envelope text-sm text-brand-turquoise"></i>
-                    Contacto & Booking
-                </a>
+                <div id="hero-btn-left" class="hero-anim-element w-full sm:w-auto">
+                    <a href="#redes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-turquoise font-bold text-stone-950 shadow-lg hover:bg-brand-turquoiseLight transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-headphones text-lg"></i>
+                        Escuchar Ahora
+                    </a>
+                </div>
+                <div id="hero-btn-right" class="hero-anim-element w-full sm:w-auto">
+                    <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-full bg-stone-800/80 hover:bg-stone-700 font-bold text-stone-200 border border-stone-700 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-envelope text-sm text-brand-turquoise"></i>
+                        Contacto & Booking
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -561,13 +576,48 @@
             } 
         }
 
+        // Animación sincronizada de la Portada Hero al hacer Scroll
+        window.addEventListener('scroll', function() {
+            const badge = document.getElementById('hero-badge');
+            const titleAdrian = document.getElementById('hero-title-adrian');
+            const titleMusic = document.getElementById('hero-title-music');
+            const btnLeft = document.getElementById('hero-btn-left');
+            const btnRight = document.getElementById('hero-btn-right');
+            
+            let scrollY = window.scrollY;
+
+            if (scrollY <= 450) {
+                let offsetHorizontal = scrollY * 0.55; // Desplazamiento lateral
+                let offsetVertical = scrollY * 0.45;   // Desplazamiento hacia arriba
+                let opacityVal = Math.max(1 - (scrollY / 300), 0); // Desvanecimiento gradual
+
+                // 1. Badge sube y se desvanece
+                badge.style.transform = `translateY(-${offsetVertical}px)`;
+                badge.style.opacity = opacityVal;
+
+                // 2. ADRIAN y "Escuchar Ahora" se mueven a la izquierda y se desvanecen
+                titleAdrian.style.transform = `translateX(-${offsetHorizontal}px)`;
+                titleAdrian.style.opacity = opacityVal;
+                
+                btnLeft.style.transform = `translateX(-${offsetHorizontal}px)`;
+                btnLeft.style.opacity = opacityVal;
+
+                // 3. MUSIC y "Contacto & Booking" se mueven a la derecha y se desvanecen
+                titleMusic.style.transform = `translateX(${offsetHorizontal}px)`;
+                titleMusic.style.opacity = opacityVal;
+
+                btnRight.style.transform = `translateX(${offsetHorizontal}px)`;
+                btnRight.style.opacity = opacityVal;
+            }
+        });
+
         // Mostrar / Ocultar desplegable de idiomas
         function toggleLangDropdown(menuId) {
             const menu = document.getElementById(menuId);
             menu.classList.toggle('hidden');
         }
 
-        // Cerrar menú desplegable al hacer clic en cualquier otra parte
+        // Cerrar menú desplegable al hacer clic fuera
         window.onclick = function(event) {
             if (!event.target.closest('button')) {
                 const dropdowns = document.querySelectorAll('[id$="-lang-menu"]');
@@ -585,7 +635,6 @@
                 selectElement.dispatchEvent(new Event('change'));
             }
             
-            // Cerrar menú desplegable tras seleccionar
             const dropdown = document.getElementById('desktop-lang-menu');
             if (dropdown) dropdown.classList.add('hidden');
         }
