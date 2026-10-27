@@ -44,7 +44,7 @@
         }
     </script>
 
-    <!-- Custom CSS para animaciones y efectos -->
+    <!-- Custom CSS para animaciones, efectos y movimiento del logo -->
     <style>
         body {
             background-color: #1c1917;
@@ -115,6 +115,18 @@
             pointer-events: none;
         }
 
+        /* Clases para animar la separación del logo al hacer scroll */
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-part {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         /* Ocultar elementos nativos de Google Translate */
         .goog-te-banner-frame, .skiptranslate, #google_translate_element {
             display: none !important;
@@ -130,12 +142,14 @@
     <!-- Contenedor oculto de Google Translate -->
     <div id="google_translate_element"></div>
 
-    <!-- NAVBAR FIJO CON MENÚ DE IDIOMAS DESPLEGABLE -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-[#1c1917]/90 backdrop-blur-md border-b border-stone-800">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo / Nombre -->
-            <a href="#inicio" class="text-2xl font-black font-heading tracking-wider text-white hover:opacity-90 transition-opacity">
-                ADRIAN <span class="text-brand-turquoise">MUSIC</span>
+    <!-- NAVBAR FIJO CON ANIMACIÓN DE LOGO SEPARADO AL HACER SCROLL -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#1c1917]/90 backdrop-blur-md border-b border-stone-800 transition-all duration-300">
+        <div id="nav-inner" class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <!-- Logo Dinámico (Adrian a la izquierda, Music a la derecha al bajar) -->
+            <a href="#inicio" id="logo-link" class="text-2xl font-black font-heading tracking-wider text-white hover:opacity-90 transition-opacity flex items-center gap-2">
+                <span id="logo-adrian" class="logo-part text-white">ADRIAN</span> 
+                <span id="logo-music" class="logo-part text-brand-turquoise">MUSIC</span>
             </a>
             
             <!-- Enlaces Desktop -->
@@ -532,7 +546,7 @@
         </div>
     </footer>
 
-    <!-- Lógica de interacciones Javascript -->
+    <!-- Lógica de interacciones Javascript y Animación del Logo -->
     <script>
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -560,6 +574,29 @@
                 btn.innerHTML = "Seguir leyendo"; 
             } 
         }
+
+        // Animación del Logo al hacer Scroll (Se separan al bajar, se unen al volver arriba)
+        window.addEventListener('scroll', function() {
+            const navInner = document.getElementById('nav-inner');
+            const logoAdrian = document.getElementById('logo-adrian');
+            const logoMusic = document.getElementById('logo-music');
+            
+            let scrollPosition = window.scrollY;
+
+            if (scrollPosition > 50) {
+                // Al bajar: la barra se estira, el contenedor ocupa todo el ancho y las palabras se van a los extremos
+                navInner.classList.remove('max-w-6xl');
+                navInner.classList.add('max-w-full');
+                navInner.style.paddingLeft = '5vw';
+                navInner.style.paddingRight = '5vw';
+            } else {
+                // Al volver arriba: se contraen y se unen de nuevo en su lugar
+                navInner.classList.remove('max-w-full');
+                navInner.classList.add('max-w-6xl');
+                navInner.style.paddingLeft = '';
+                navInner.style.paddingRight = '';
+            }
+        });
 
         // Mostrar / Ocultar desplegable de idiomas
         function toggleLangDropdown(menuId) {
