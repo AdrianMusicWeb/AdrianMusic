@@ -49,6 +49,7 @@
         body {
             background-color: #070709;
             color: #f3f4f6;
+            top: 0px !important;
         }
 
         .gradient-text {
@@ -78,7 +79,7 @@
             opacity: 1;
         }
 
-        /* Estilos personalizados para el video de fondo en el Hero */
+        /* Video de Fondo Tenue y Difuminado */
         .hero-video-bg {
             position: absolute;
             top: 0;
@@ -87,8 +88,8 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.50; /* Controla qué tan tenue se ve el video (0.1 a 0.5 recomendado) */
-            filter: blur(1px); /* Difumina ligeramente el video para que no distraiga */
+            opacity: 0.50;
+            filter: blur(1px);
         }
 
         /* Esferas de luz ambiental */
@@ -113,6 +114,11 @@
             filter: blur(70px);
             pointer-events: none;
         }
+
+        /* Ocultar barra y elementos nativos de Google Translate */
+        .goog-te-banner-frame, .skiptranslate, #google_translate_element {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-brand-purple selection:text-white relative overflow-x-hidden">
@@ -121,7 +127,10 @@
     <div class="glow-sphere-1"></div>
     <div class="glow-sphere-2"></div>
 
-    <!-- NAVBAR FIJO -->
+    <!-- Contenedor oculto de Google Translate -->
+    <div id="google_translate_element"></div>
+
+    <!-- NAVBAR FIJO CON MENÚ DE IDIOMAS DESPLEGABLE -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Logo / Nombre -->
@@ -130,7 +139,7 @@
             </a>
             
             <!-- Enlaces Desktop -->
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm text-gray-300">
+            <div class="hidden md:flex items-center space-x-6 font-medium text-sm text-gray-300">
                 <a href="#inicio" class="hover:text-brand-cyan transition-colors">Inicio</a>
                 <a href="#biografia" class="hover:text-brand-cyan transition-colors">Biografía</a>
                 <a href="#redes" class="hover:text-brand-purple transition-colors">Redes Sociales</a>
@@ -138,10 +147,45 @@
                 <a href="#contacto" class="hover:text-brand-cyan transition-colors">Contacto</a>
             </div>
 
-            <!-- Botón de acción móvil/desktop -->
-            <a href="#contacto" class="hidden sm:inline-block px-5 py-2 text-xs font-semibold uppercase tracking-wider rounded-full bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink text-white hover:shadow-neon-purple transition-all duration-300 transform hover:-translate-y-0.5">
-                Contrataciones
-            </a>
+            <!-- Acciones a la derecha: Selector de Idiomas + Botón Contrataciones -->
+            <div class="hidden md:flex items-center space-x-4">
+                
+                <!-- Desplegable Personalizado de Idiomas -->
+                <div class="relative inline-block text-left">
+                    <button onclick="toggleLangDropdown('desktop-lang-menu')" class="flex items-center gap-2 bg-brand-card hover:bg-white/10 border border-white/10 rounded-full px-4 py-2 text-xs font-semibold text-gray-300 transition-colors">
+                        <i class="fa-solid fa-globe text-brand-cyan"></i>
+                        <span id="current-lang-text">Español</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
+                    </button>
+
+                    <!-- Lista desplegable -->
+                    <div id="desktop-lang-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-brand-card border border-white/10 shadow-2xl py-2 z-50">
+                        <button onclick="translateLanguage('es', 'Español')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                            Español <span>🇪🇸</span>
+                        </button>
+                        <button onclick="translateLanguage('en', 'English')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                            English <span>🇺🇸</span>
+                        </button>
+                        <button onclick="translateLanguage('pt', 'Português')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                            Português <span>🇧🇷</span>
+                        </button>
+                        <button onclick="translateLanguage('fr', 'Français')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                            Français <span>🇫🇷</span>
+                        </button>
+                        <button onclick="translateLanguage('de', 'Deutsch')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                            Deutsch <span>🇩🇪</span>
+                        </button>
+                        <button onclick="translateLanguage('it', 'Italiano')" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-white/10 hover:text-brand-cyan flex items-center justify-between">
+                            Italiano <span>🇮🇹</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botón de Contrataciones -->
+                <a href="#contacto" class="px-5 py-2 text-xs font-semibold uppercase tracking-wider rounded-full bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink text-white hover:shadow-neon-purple transition-all duration-300 transform hover:-translate-y-0.5">
+                    Contrataciones
+                </a>
+            </div>
 
             <!-- Botón Menú Móvil -->
             <button id="mobile-menu-btn" onclick="toggleMenu()" class="md:hidden text-gray-300 hover:text-white focus:outline-none text-2xl">
@@ -155,7 +199,15 @@
             <a href="#biografia" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Biografía</a>
             <a href="#redes" onclick="toggleMenu()" class="hover:text-brand-purple py-1 border-b border-white/5">Redes Sociales</a>
             <a href="#videos" onclick="toggleMenu()" class="hover:text-brand-pink py-1 border-b border-white/5">Videos</a>
-            <a href="#contacto" onclick="toggleMenu()" class="hover:text-brand-cyan py-1">Contacto</a>
+            <a href="#contacto" onclick="toggleMenu()" class="hover:text-brand-cyan py-1 border-b border-white/5">Contacto</a>
+            
+            <!-- Selector de Idioma en Móvil -->
+            <div class="pt-2 flex flex-wrap justify-center gap-2">
+                <button onclick="translateLanguage('es', 'Español')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇪🇸 ES</button>
+                <button onclick="translateLanguage('en', 'English')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇺🇸 EN</button>
+                <button onclick="translateLanguage('pt', 'Português')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇧🇷 PT</button>
+                <button onclick="translateLanguage('fr', 'Français')" class="px-3 py-1.5 text-xs bg-brand-dark border border-white/10 rounded-full text-gray-300">🇫🇷 FR</button>
+            </div>
         </div>
     </nav>
 
@@ -168,7 +220,7 @@
             Tu navegador no soporta videos en HTML5.
         </video>
 
-        <!-- Capa oscura semitransparente adicional para oscurecer el video y mejorar contraste -->
+        <!-- Capa oscura semitransparente -->
         <div class="absolute inset-0 bg-brand-dark/70 z-0"></div>
 
         <!-- Contenido Principal del Hero -->
@@ -199,60 +251,60 @@
 
     <!-- 2. SECCIÓN BIOGRAFÍA -->
     <section id="biografia" class="py-24 px-6 max-w-5xl mx-auto relative z-10 scroll-mt-20">
-    <div class="gradient-border p-8 md:p-12">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            
-            <!-- Avatar / Foto del Artista -->
-            <div class="md:col-span-5 relative group">
-                <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                    <img src="Foto Adrian/Que Tú Que Yo Adrian.png" 
-                         alt="Adrian Music" 
-                         class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
-                </div>
-                <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-brand-purple/40 rounded-2xl -z-10"></div>
-            </div>
-
-            <!-- Trayectoria e Historia -->
-            <div class="md:col-span-7">
-                <span class="text-xs font-semibold text-brand-purple uppercase tracking-widest block mb-1">Trayectoria & Estilo</span>
-                <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-4">
-                    Sobre <span class="gradient-text">Adrian Music</span>
-                </h2>
+        <div class="gradient-border p-8 md:p-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 
-                <!-- Resumen inicial -->
-                <p class="text-gray-300 leading-relaxed text-base text-justify mb-6">
-                    Cantautor y productor musical formado en percusión latina y composición. Tras consolidar su carrera solista (<strong class="text-white">“Escúchame”</strong>, <strong class="text-white">“¿Qué Nos Pasó?”</strong>) y trabajar en producción junto a Baudhy La Bestia Armoniosa y la agrupación Esto Es Clandestino, actualmente se encuentra trabajando de la mano del reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-purple">"Dimelojen"</strong>, en sus próximos lanzamientos.
-                </p>
-
-                <!-- Botón de Leer Más -->
-                <button id="read-more-btn" class="border border-brand-purple rounded-full px-6 py-2 text-brand-purple hover:bg-brand-purple hover:text-white transition duration-300 mb-4" onclick="toggleBiography()">
-                    Seguir leyendo
-                </button>
-
-                <!-- Biografía completa desplegable alineada -->
-                <div id="full-bio" style="display: none;" class="space-y-4 text-gray-300 text-sm md:text-base text-justify leading-relaxed mt-4 pt-4 border-t border-white/10">
-                    <p>
-                        Nació el 12 de octubre de 1990 y desde muy pequeño mostró una profunda pasión por la música y la escritura. Sus primeros pasos en la composición comenzaron expresando sentimientos a través de poesías y versos con ritmo y coherencia, los cuales con el tiempo transformó en canciones.
-                    </p>
-                    <p>
-                        Tras formarse en <span class="text-brand-purple font-medium">percusión latina</span>, comenzó a crear las instrumentales de sus propios temas. Durante su etapa universitaria formó parte de la agrupación <em>Grupo Alternativa</em>, abriéndose paso en la escena musical.
-                    </p>
-                    <p>
-                        En 2014 formalizó su debut como solista con el tema <strong class="text-white">“Enamorado de ti”</strong>. Más adelante consolidó su propuesta musical con los lanzamientos de <strong class="text-white">“Escúchame”</strong> (2016) y <strong class="text-white">“¿Qué Nos Pasó?”</strong> (2018), sencillos con los que logró darse a conocer en medios de comunicación y presentaciones en vivo.
-                    </p>
-                    <p>
-                        A la par de su faceta como intérprete, ha mantenido una sólida labor como productor y compositor, creando letras y beats tanto para él como para otros artistas. Participó en la producción de los temas <strong class="text-white">“Aguardiente”</strong> y <strong class="text-white">“En la Orilla de la Playa”</strong> junto al reconocido productor <em>Baudhy La Bestia Armoniosa</em>, y ha ejercido como productor musical de la agrupación <em>“Esto Es Clandestino”</em>.
-                    </p>
-                    <p class="border-l-2 border-brand-purple pl-4 italic text-gray-400">
-                        En la actualidad, Adrián continúa evolucionando en su propuesta sonora y se encuentra trabajando en conjunto con el reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-purple font-normal font-sans">"Dimelojen"</strong>, en la producción de sus nuevos temas.
-                    </p>
+                <!-- Avatar / Foto del Artista -->
+                <div class="md:col-span-5 relative group">
+                    <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                        <img src="Foto Adrian/Que Tú Que Yo Adrian.png" 
+                             alt="Adrian Music" 
+                             class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border-2 border-brand-purple/40 rounded-2xl -z-10"></div>
                 </div>
 
+                <!-- Trayectoria e Historia -->
+                <div class="md:col-span-7">
+                    <span class="text-xs font-semibold text-brand-purple uppercase tracking-widest block mb-1">Trayectoria & Estilo</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-heading mb-4">
+                        Sobre <span class="gradient-text">Adrian Music</span>
+                    </h2>
+                    
+                    <!-- Resumen inicial -->
+                    <p class="text-gray-300 leading-relaxed text-base text-justify mb-6">
+                        Cantautor y productor musical formado en percusión latina y composición. Tras consolidar su carrera solista (<strong class="text-white">“Escúchame”</strong>, <strong class="text-white">“¿Qué Nos Pasó?”</strong>) y trabajar en producción junto a Baudhy La Bestia Armoniosa y la agrupación Esto Es Clandestino, actualmente se encuentra trabajando de la mano del reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-purple">"Dimelojen"</strong>, en sus próximos lanzamientos.
+                    </p>
+
+                    <!-- Botón de Leer Más -->
+                    <button id="read-more-btn" class="border border-brand-purple rounded-full px-6 py-2 text-brand-purple hover:bg-brand-purple hover:text-white transition duration-300 mb-4" onclick="toggleBiography()">
+                        Seguir leyendo
+                    </button>
+
+                    <!-- Biografía completa desplegable alineada -->
+                    <div id="full-bio" style="display: none;" class="space-y-4 text-gray-300 text-sm md:text-base text-justify leading-relaxed mt-4 pt-4 border-t border-white/10">
+                        <p>
+                            Nació el 12 de octubre de 1990 y desde muy pequeño mostró una profunda pasión por la música y la escritura. Sus primeros pasos en la composición comenzaron expresando sentimientos a través de poesías y versos con ritmo y coherencia, los cuales con el tiempo transformó en canciones.
+                        </p>
+                        <p>
+                            Tras formarse en <span class="text-brand-purple font-medium">percusión latina</span>, comenzó a crear las instrumentales de sus propios temas. Durante su etapa universitaria formó parte de la agrupación <em>Grupo Alternativa</em>, abriéndose paso en la escena musical.
+                        </p>
+                        <p>
+                            En 2014 formalizó su debut como solista con el tema <strong class="text-white">“Enamorado de ti”</strong>. Más adelante consolidó su propuesta musical con los lanzamientos de <strong class="text-white">“Escúchame”</strong> (2016) y <strong class="text-white">“¿Qué Nos Pasó?”</strong> (2018), sencillos con los que logró darse a conocer en medios de comunicación y presentaciones en vivo.
+                        </p>
+                        <p>
+                            A la par de su faceta como intérprete, ha mantenido una sólida labor como productor y compositor, creando letras y beats tanto para él como para otros artistas. Participó en la producción de los temas <strong class="text-white">“Aguardiente”</strong> y <strong class="text-white">“En la Orilla de la Playa”</strong> junto al reconocido productor <em>Baudhy La Bestia Armoniosa</em>, y ha ejercido como productor musical de la agrupación <em>“Esto Es Clandestino”</em>.
+                        </p>
+                        <p class="border-l-2 border-brand-purple pl-4 italic text-gray-400">
+                            En la actualidad, Adrián continúa evolucionando en su propuesta sonora y se encuentra trabajando en conjunto con el reconocido productor Jenderson Vera, mejor conocido como <strong class="text-brand-purple font-normal font-sans">"Dimelojen"</strong>, en la producción de sus nuevos temas.
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- 3. SECCIÓN REDES SOCIALES -->
     <section id="redes" class="py-24 px-6 max-w-4xl mx-auto relative z-10 scroll-mt-20">
@@ -279,7 +331,7 @@
             </a>
 
             <!-- YouTube -->
-            <a href="https://www.youtube.com/@OfficialAdrianMusic" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-red-500/50">
+            <a href="https://www.youtube.com/@OfficialAdrianMusic" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-xl bg-brand-card hover:bg-white/10 border border-white/10 transition-all duration-300 group hover:border-red-500/50">
                 <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all text-2xl mr-4">
                     <i class="fa-brands fa-youtube"></i>
                 </div>
@@ -345,7 +397,7 @@
                 <div class="relative aspect-video w-full">
                     <iframe class="w-full h-full" 
                             src="https://www.youtube.com/embed/TNqpaLmWDr4" 
-                            title=""Que Tú Que Yo-Adrian (Official Video)" 
+                            title="Que Tú Que Yo - Adrian (Official Video)" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -411,7 +463,7 @@
                         </div>
                         <div>
                             <span class="text-xs text-gray-400 block">Ubicación Base</span>
-                            <span class="text-white font-medium">Caracas/ Venezuela</span>
+                            <span class="text-white font-medium">Caracas / Venezuela</span>
                         </div>
                     </div>
                 </div>
@@ -523,6 +575,47 @@
                 btn.innerHTML = "Seguir leyendo"; 
             } 
         }
+
+        // Mostrar / Ocultar desplegable de idiomas
+        function toggleLangDropdown(menuId) {
+            const menu = document.getElementById(menuId);
+            menu.classList.toggle('hidden');
+        }
+
+        // Cerrar menú desplegable al hacer clic en cualquier otra parte
+        window.onclick = function(event) {
+            if (!event.target.closest('button')) {
+                const dropdowns = document.querySelectorAll('[id$="-lang-menu"]');
+                dropdowns.forEach(d => d.classList.add('hidden'));
+            }
+        }
+
+        // Traductor Directo con Google Translate API sin recargar
+        function translateLanguage(langCode, langName) {
+            document.getElementById('current-lang-text').innerText = langName;
+            
+            const selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+            }
+            
+            // Cerrar menú desplegable tras seleccionar
+            const dropdown = document.getElementById('desktop-lang-menu');
+            if (dropdown) dropdown.classList.add('hidden');
+        }
     </script>
+
+    <!-- Script Oficial de Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,es,pt,fr,it,de',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
