@@ -478,44 +478,40 @@
             </div>
 
             <!-- Formulario de Contacto -->
-            <div class="md:col-span-7 bg-brand-card p-8 rounded-2xl border border-white/10">
-                <form id="contact-form" action="https://formspree.io/f/mzeeroal" method="POST" class="space-y-5">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Nombre Completo</label>
-                        <input type="text" required placeholder="Tu nombre o empresa" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
-                    </div>
+            <!-- Formulario de Contacto Conectado a Formspree -->
+<div class="md:col-span-7 bg-brand-card p-8 rounded-2xl border border-white/10">
+    <form action="https://formspree.io/f/mzeeroal" method="POST" class="space-y-5">
+        <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Nombre Completo</label>
+            <input type="text" name="name" required placeholder="Tu nombre o empresa" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
+        </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Correo Electrónico</label>
-                            <input type="email" required placeholder="correo@ejemplo.com" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Asunto</label>
-                            <select class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple transition-colors text-sm">
-                                <option>Contratación de Show</option>
-                                <option>Prensa / Entrevista</option>
-                                <option>Colaboración Musical</option>
-                                <option>Otro</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Mensaje</label>
-                        <textarea rows="4" required placeholder="Escribe los detalles de tu consulta o evento..." class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm resize-none"></textarea>
-                    </div>
-
-                    <!-- Mensaje de confirmación personalizado -->
-                    <div id="form-message" class="hidden text-xs p-3 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300">
-                        ¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.
-                    </div>
-
-                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink font-bold text-white shadow-lg hover:shadow-neon-pink transition-all duration-300 transform hover:-translate-y-0.5">
-                        Enviar Mensaje
-                    </button>
-                </form>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Correo Electrónico</label>
+                <input type="email" name="email" required placeholder="correo@ejemplo.com" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm">
             </div>
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Asunto</label>
+                <select name="subject" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple transition-colors text-sm">
+                    <option value="Contratación de Show">Contratación de Show</option>
+                    <option value="Prensa / Entrevista">Prensa / Entrevista</option>
+                    <option value="Colaboración Musical">Colaboración Musical</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Mensaje</label>
+            <textarea name="message" rows="4" required placeholder="Escribe los detalles de tu consulta o evento..." class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple transition-colors text-sm resize-none"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink font-bold text-white shadow-lg hover:shadow-neon-pink transition-all duration-300 transform hover:-translate-y-0.5">
+            Enviar Mensaje
+        </button>
+    </form>
+</div>
 
         </div>
     </section>
